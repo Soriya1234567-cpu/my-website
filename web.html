@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zestifyy - Pure Fruit. Zero Boring.</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Config for Custom Theme Colors -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandRed: {
+              light: '#f22e3e',
+              DEFAULT: '#d31321',
+              dark: '#9d0915',
+            },
+            brandOrange: '#fb923c',
+            brandBlue: '#3b82f6',
+            brandGreen: '#10b981',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Outfit:wght@300..900&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+    }
+    .font-title {
+      font-family: 'Fredoka', sans-serif;
+    }
+    
+    /* Beautiful 3D Bubble Text Logo replica to match actual logo branding */
+    .logo-3d {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 800;
+      background: linear-gradient(to bottom, #fff5c0 0%, #facc15 35%, #ea580c 70%, #dc2626 100%);
+      
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(2px 2px 0px #4c0519) drop-shadow(-1.5px -1.5px 0px #4c0519) drop-shadow(1.5px -1.5px 0px #4c0519) drop-shadow(-1.5px 1.5px 0px #4c0519);
+    }
+
+    /* Custom Keyframe Animations for Floating Fruit Elements */
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(10deg); }
+    }
+    @keyframes floatX {
+      0%, 100% { transform: translateX(0px) rotate(0deg); }
+      50% { transform: translateX(12px) rotate(-8deg); }
+    }
+    @keyframes rotateSlow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 0.9; transform: scale(1.05); }
+    }
+    @keyframes splashLiquid {
+      0%, 100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+      33% { border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%; }
+      66% { border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%; }
+    }
+
+    .animate-float-1 { animation: floatY 6s ease-in-out infinite; }
+    .animate-float-2 { animation: floatX 8s ease-in-out infinite; }
+    .animate-float-3 { animation: floatY 5s ease-in-out infinite 1s; }
+    .animate-rotate-slow { animation: rotateSlow 25s linear infinite; }
+    .animate-glow { animation: pulseGlow 4s ease-in-out infinite; }
+    .animate-splash { animation: splashLiquid 8s ease-in-out infinite; }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+  </style>
+</head>
+<body class="bg-[#110103] text-white overflow-x-hidden min-h-screen flex flex-col">
+
+  <!-- Floating Fruit & Splash Decorative Elements -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-30 select-none">
+    <div class="absolute top-[10%] left-[5%] text-5xl animate-float-1">🍓</div>
+    <div class="absolute top-[25%] right-[8%] text-6xl animate-float-2">🍋</div>
+    <div class="absolute bottom-[20%] left-[8%] text-5xl animate-float-3">🫐</div>
+    <div class="absolute bottom-[35%] right-[12%] text-4xl animate-float-1">🍃</div>
+    <div class="absolute top-[60%] left-[2%] text-4xl animate-float-2">🍃</div>
+    <div class="absolute top-[45%] right-[4%] text-5xl animate-float-3">🍊</div>
+    
+    <!-- Fluid background splashes -->
+    <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-brandRed rounded-full filter blur-[120px] mix-blend-screen animate-glow opacity-40"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-brandOrange rounded-full filter blur-[150px] mix-blend-screen animate-glow opacity-30"></div>
+  </div>
+
+  <!-- STICKY HEADER & NAVIGATION -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-[#110103]/80 border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo Zone -->
+      <a href="#" onclick="navigateTo('home')" class="flex items-center gap-3 group">
+        <!-- Intelligent logo container extracting the cartoon wordmark from your uploaded banner image -->
+        <div class="relative w-40 h-14 overflow-hidden flex items-center justify-start rounded-xl">
+          <img src="img/logo.png" alt="Zestifyy Logo" class="absolute h-[160%] w-auto max-w-none object-cover" style="left: -12px; top: -14px; transform-origin: left center;" onerror="this.style.display='none'; document.getElementById('css-logo-fallback').classList.remove('hidden');">
+          <!-- Exquisite 3D styled CSS fallback matching your bubble cartoon text exactly -->
+          <span id="css-logo-fallback" class="hidden font-title text-3xl font-black tracking-tight logo-3d">Zestifyy</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-8">
+        <button onclick="navigateTo('home')" class="nav-link font-medium hover:text-brandOrange transition-colors py-2 border-b-2 border-transparent" id="nav-home">Home</button>
+        <button onclick="navigateTo('products')" class="nav-link font-medium hover:text-brandOrange transition-colors py-2 border-b-2 border-transparent" id="nav-products">Products</button>
+        <button onclick="navigateTo('promo')" class="nav-link font-medium hover:text-brandOrange transition-colors py-2 border-b-2 border-transparent" id="nav-promo">Promo</button>
+        <button onclick="navigateTo('about')" class="nav-link font-medium hover:text-brandOrange transition-colors py-2 border-b-2 border-transparent" id="nav-about">About Us</button>
+        <button onclick="navigateTo('contact')" class="nav-link font-medium hover:text-brandOrange transition-colors py-2 border-b-2 border-transparent" id="nav-contact">Contact</button>
+      </nav>
+
+      <!-- Cart Button & Mobile Menu Toggle -->
+      <div class="flex items-center gap-4">
+        <!-- Interactive Cart Toggle Button -->
+        <button onclick="toggleCartDrawer()" class="relative p-2.5 bg-white/5 rounded-full hover:bg-white/10 hover:scale-105 transition-all border border-white/10 flex items-center justify-center shadow-lg" aria-label="Open Cart">
+          <i data-lucide="shopping-bag" class="w-5 h-5 text-white"></i>
+          <span id="cart-badge" class="absolute -top-1 -right-1 bg-brandOrange text-[#110103] font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center animate-bounce shadow-md hidden">0</span>
+        </button>
+
+        <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 bg-white/5 rounded-full hover:bg-white/10 border border-white/10 flex items-center justify-center" aria-label="Toggle Menu">
+          <i data-lucide="menu" id="menu-icon-hamburger" class="w-5 h-5 text-white"></i>
+          <i data-lucide="x" id="menu-icon-close" class="w-5 h-5 text-white hidden"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Panel -->
+    <div id="mobile-menu" class="hidden md:hidden bg-[#150204] border-t border-white/5 px-4 py-6 space-y-3 transition-all duration-300">
+      <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left py-3 px-4 rounded-xl hover:bg-brandRed/10 hover:text-brandOrange transition-colors font-medium">Home</button>
+      <button onclick="navigateTo('products'); toggleMobileMenu()" class="block w-full text-left py-3 px-4 rounded-xl hover:bg-brandRed/10 hover:text-brandOrange transition-colors font-medium">Products</button>
+      <button onclick="navigateTo('promo'); toggleMobileMenu()" class="block w-full text-left py-3 px-4 rounded-xl hover:bg-brandRed/10 hover:text-brandOrange transition-colors font-medium">Promo</button>
+      <button onclick="navigateTo('about'); toggleMobileMenu()" class="block w-full text-left py-3 px-4 rounded-xl hover:bg-brandRed/10 hover:text-brandOrange transition-colors font-medium">About Us</button>
+      <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-left py-3 px-4 rounded-xl hover:bg-brandRed/10 hover:text-brandOrange transition-colors font-medium">Contact</button>
+    </div>
+  </header>
+
+  <!-- MAIN VIEW CONTAINER -->
+  <main class="flex-grow z-10">
+
+    <!-- ================== SECTION: HOME ================== -->
+    <section id="section-home" class="view-section py-8 md:py-16">
+      
+      <!-- Premium Banner / Hero Area -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Side Content -->
+        <div class="lg:col-span-6 space-y-8 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-brandRed/20 border border-brandRed/30 rounded-full text-sm font-semibold tracking-wider text-brandOrange uppercase animate-pulse">
+            <span class="w-2.5 h-2.5 rounded-full bg-brandRed-light inline-block"></span>
+            Now Available in Phnom Penh!
+          </div>
+          <h1 class="font-title text-5xl sm:text-6xl xl:text-7xl font-extrabold leading-tight tracking-tight">
+            Zest Up <br class="hidden sm:inline" />
+            <span class="bg-gradient-to-r from-brandOrange via-brandRed-light to-brandRed bg-clip-text text-transparent drop-shadow-sm">Your Day!</span>
+          </h1>
+          <p class="text-gray-300 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+            Pure fruit goodness with zero boring moments. Awaken your taste buds with our cold-pressed, refreshingly natural, and premium crafted craft fruit drinks.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+            <button onclick="navigateTo('products')" class="px-8 py-4 bg-brandOrange text-[#110103] font-title font-bold text-lg rounded-full hover:bg-white hover:scale-105 hover:shadow-[0_0_30px_rgba(251,146,60,0.4)] transition-all flex items-center justify-center gap-2 group">
+              Explore Flavors
+              <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+            <button onclick="navigateTo('promo')" class="px-8 py-4 bg-white/5 text-white font-title font-bold text-lg rounded-full hover:bg-white/10 hover:scale-105 border border-white/10 transition-all">
+              Claim Promo Deal
+            </button>
+          </div>
+
+          <!-- Fast stats / Perks -->
+          <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/5">
+            <div>
+              <p class="font-title text-3xl font-bold text-brandOrange">100%</p>
+              <p class="text-xs text-gray-400 uppercase tracking-widest mt-1">Natural Juice</p>
+            </div>
+            <div>
+              <p class="font-title text-3xl font-bold text-white">Zero</p>
+              <p class="text-xs text-gray-400 uppercase tracking-widest mt-1">Artificial Sugar</p>
+            </div>
+            <div>
+              <p class="font-title text-3xl font-bold text-brandGreen">Eco</p>
+              <p class="text-xs text-gray-400 uppercase tracking-widest mt-1">Sourced Fruit</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Highly Interactive Interactive Liquid Beverage Showcase -->
+        <div class="lg:col-span-6 relative flex flex-col items-center justify-center">
+          
+          <!-- Liquid Splash Background Wrapper -->
+          <div class="absolute w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] bg-gradient-to-tr from-brandRed-dark via-brandRed to-brandOrange rounded-full opacity-60 blur-3xl animate-splash"></div>
+          
+          <!-- Active Beverage Display Showcase Frame -->
+          <div id="showcase-card" class="relative z-10 w-full max-w-[340px] sm:max-w-[420px] bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 flex flex-col items-center transition-all duration-500 shadow-2xl overflow-hidden group">
+            
+            <!-- Dynamic fluid colored background highlight inside the card -->
+            <div id="showcase-liquid-accent" class="absolute -top-1/2 -right-1/2 w-full h-full bg-brandRed/20 rounded-full blur-2xl transition-all duration-700"></div>
+
+            <div class="relative w-full aspect-[4/5] flex items-center justify-center py-4">
+              <!-- Animated SVG cup illustration representing high visual mockups of our juices -->
+              <div class="relative w-56 h-72 scale-105 sm:scale-110 drop-shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+                <!-- SVG Premium drink container illustration -->
+                <svg viewBox="0 0 200 300" class="w-full h-full">
+                  <defs>
+                    <linearGradient id="cupGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
+                      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05"/>
+                    </linearGradient>
+                    <linearGradient id="juiceStrawberry" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#f43f5e"/>
+                      <stop offset="50%" stop-color="#be123c"/>
+                      <stop offset="100%" stop-color="#9f1239"/>
+                    </linearGradient>
+                    <linearGradient id="juiceBlueberry" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#3b82f6"/>
+                      <stop offset="50%" stop-color="#1e40af"/>
+                      <stop offset="100%" stop-color="#1e1b4b"/>
+                    </linearGradient>
+                    <linearGradient id="juiceOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#f97316"/>
+                      <stop offset="50%" stop-color="#ea580c"/>
+                      <stop offset="100%" stop-color="#c2410c"/>
+                    </linearGradient>
+                    <!-- Ice gradient -->
+                    <linearGradient id="iceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+                      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.2"/>
+                    </linearGradient>
+                  </defs>
+                  
+                  <!-- Straw (Red/Orange stripes) -->
+                  <line x1="120" y1="20" x2="80" y2="100" stroke="#f43f5e" stroke-width="12" stroke-linecap="round" />
+                  <line x1="120" y1="20" x2="105" y2="50" stroke="#ffffff" stroke-width="12" stroke-linecap="butt" />
+                  <line x1="97" y1="65" x2="87" y2="85" stroke="#ffffff" stroke-width="12" stroke-linecap="butt" />
+
+                  <!-- Liquid level shadow -->
+                  <path d="M 45 90 Q 100 80 155 90 L 140 270 Q 100 280 60 270 Z" fill="#4c0519" opacity="0.4"/>
+                  
+                  <!-- Fluid Juice Body dynamically filled -->
+                  <path id="svg-juice-fluid" d="M 45 100 Q 100 90 155 100 L 141 265 Q 100 275 59 265 Z" fill="url(#juiceStrawberry)" />
+
+                  <!-- Ice Cubes inside fluid -->
+                  <rect x="75" y="140" width="35" height="35" rx="6" fill="url(#iceGrad)" transform="rotate(15 92.5 157.5)" />
+                  <rect x="105" y="180" width="30" height="30" rx="6" fill="url(#iceGrad)" transform="rotate(-25 120 195)" />
+                  <rect x="65" y="210" width="32" height="32" rx="6" fill="url(#iceGrad)" transform="rotate(40 81 226)" />
+
+                  <!-- Floating Strawberry Slices inside SVG -->
+                  <g id="svg-inner-fruit-1" transform="translate(100, 110)">
+                    <circle cx="0" cy="0" r="16" fill="#be123c"/>
+                    <path d="M-12,-8 L12,-8 L0,12 Z" fill="#fda4af"/>
+                    <!-- Seeds -->
+                    <circle cx="-5" cy="-2" r="1.5" fill="#fef08a"/>
+                    <circle cx="5" cy="-2" r="1.5" fill="#fef08a"/>
+                    <circle cx="0" cy="6" r="1.5" fill="#fef08a"/>
+                  </g>
+                  <g id="svg-inner-fruit-2" transform="translate(120, 230) rotate(-45)">
+                    <!-- Lemon Slice -->
+                    <circle cx="0" cy="0" r="18" fill="#eab308"/>
+                    <circle cx="0" cy="0" r="15" fill="#fef08a"/>
+                    <!-- Segments -->
+                    <path d="M 0 0 L 15 0 A 15 15 0 0 1 10.6 10.6 Z" fill="#facc15" stroke="#fef08a" stroke-width="1"/>
+                    <path d="M 0 0 L -10.6 10.6 A 15 15 0 0 1 -15 0 Z" fill="#facc15" stroke="#fef08a" stroke-width="1"/>
+                  </g>
+
+                  <!-- Cup Outline Shell (Glass effect) -->
+                  <path d="M 40 80 L 160 80 L 143 275 Q 100 285 57 275 Z" fill="url(#cupGrad)" stroke="#ffffff" stroke-width="3" stroke-opacity="0.3"/>
+                  
+                  <!-- Cup Rim -->
+                  <ellipse cx="100" cy="80" rx="60" ry="12" fill="none" stroke="#ffffff" stroke-width="4" stroke-opacity="0.5"/>
+                  
+                  <!-- Bubbles & Sparkles -->
+                  <circle cx="70" cy="115" r="4" fill="#ffffff" opacity="0.6"/>
+                  <circle cx="130" cy="155" r="3" fill="#ffffff" opacity="0.8"/>
+                  <circle cx="85" cy="190" r="5" fill="#ffffff" opacity="0.4"/>
+                  <circle cx="120" cy="120" r="3.5" fill="#ffffff" opacity="0.5"/>
+                </svg>
+
+                <!-- Floating exterior fruit elements over cup for high dimension visual pop -->
+                <div id="ext-fruit-left" class="absolute -left-8 top-1/3 text-4xl animate-float-1">🍓</div>
+                <div id="ext-fruit-right" class="absolute -right-8 top-1/2 text-4xl animate-float-2">🍋</div>
+              </div>
+            </div>
+
+            <!-- Showcase Description Controls -->
+            <div class="text-center mt-6 w-full relative z-20">
+              <span id="showcase-category" class="text-xs uppercase tracking-widest font-extrabold text-brandOrange">Premium Collection</span>
+              <h3 id="showcase-title" class="font-title text-2xl font-bold mt-1 text-white">Strawberry Lemonade</h3>
+              <p id="showcase-desc" class="text-sm text-gray-300 mt-2 line-clamp-2 h-10 px-4">
+                Rich strawberry pulp swirled with premium freshly squeezed lemon citrus. Sweet, tart, and deeply fresh.
+              </p>
+              <div class="mt-4 flex items-center justify-between px-4">
+                <span id="showcase-price" class="text-2xl font-black text-brandOrange font-title">$2.99</span>
+                <button id="showcase-btn-add" onclick="addCurrentShowcaseToCart()" class="px-5 py-2 bg-brandRed hover:bg-brandRed-light font-title font-bold rounded-xl text-sm transition-all shadow-md flex items-center gap-1.5 hover:scale-105">
+                  <i data-lucide="plus" class="w-4 h-4"></i> Add to Order
+                </button>
+              </div>
+            </div>
+
+            <!-- Navigation Controls inside Showcase Card -->
+            <div class="flex gap-4 justify-center mt-6 pt-4 border-t border-white/5 w-full">
+              <button onclick="changeShowcaseProduct(-1)" class="p-2 bg-white/5 rounded-full hover:bg-white/10 text-white transition-colors border border-white/5">
+                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+              </button>
+              <div class="flex items-center gap-2" id="showcase-dots">
+                <!-- Dots populated dynamically by JS -->
+              </div>
+              <button onclick="changeShowcaseProduct(1)" class="p-2 bg-white/5 rounded-full hover:bg-white/10 text-white transition-colors border border-white/5">
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Intro / Core Brand Values Grid -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
+        <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+          <h2 class="font-title text-3xl sm:text-4xl font-extrabold tracking-tight">Crafted for Pure Happiness</h2>
+          <p class="text-gray-400 text-base md:text-lg">
+            We don't settle for concentrate or processed chemicals. Every cup of Zestifyy represents premium, state-of-the-art cold extraction.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 hover:scale-[1.02] transition-transform flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-14 h-14 bg-brandOrange/20 border border-brandOrange/30 text-brandOrange rounded-2xl flex items-center justify-center">
+                <i data-lucide="leaf" class="w-7 h-7"></i>
+              </div>
+              <h3 class="font-title text-xl font-bold">100% Raw Ingredients</h3>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Hand-picked fruits gathered from premier sustainable organic farms around the world, cold-shipped fresh directly to our stores.
+              </p>
+            </div>
+            <div class="text-xs text-brandOrange font-bold uppercase tracking-wider pt-6">Naturally sweet &bull; No junk</div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 hover:scale-[1.02] transition-transform flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-14 h-14 bg-brandRed/20 border border-brandRed/30 text-brandRed-light rounded-2xl flex items-center justify-center">
+                <i data-lucide="smile" class="w-7 h-7"></i>
+              </div>
+              <h3 class="font-title text-xl font-bold">Instant Refreshment</h3>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                A sudden boost of delicious antioxidants, revitalizing nutrients, and active zest. The perfect healthy pick-me-up.
+              </p>
+            </div>
+            <div class="text-xs text-brandRed-light font-bold uppercase tracking-wider pt-6">Tastes incredibly bold</div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 hover:scale-[1.02] transition-transform flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-14 h-14 bg-brandGreen/20 border border-brandGreen/30 text-brandGreen rounded-2xl flex items-center justify-center">
+                <i data-lucide="recycle" class="w-7 h-7"></i>
+              </div>
+              <h3 class="font-title text-xl font-bold">Eco-Friendly & Green</h3>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                We believe in keeping our earth clean. All cups, straws, and promotional materials are completely biodegradable and recyclable.
+              </p>
+            </div>
+            <div class="text-xs text-brandGreen font-bold uppercase tracking-wider pt-6">Caring for the future</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================== SECTION: PRODUCTS ================== -->
+    <section id="section-products" class="view-section py-8 md:py-16 hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Title Header -->
+        <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+          <span class="text-xs uppercase tracking-widest font-extrabold text-brandOrange">Explore Our Menu</span>
+          <h2 class="font-title text-4xl sm:text-5xl font-extrabold tracking-tight">Our Signature Juices</h2>
+          <p class="text-gray-400 text-base">
+            From zesty citrus to cozy lattes and refreshing sparkling lemonades, find your perfect boost. Hand-crafted daily.
+          </p>
+        </div>
+
+        <!-- Interactive Categories Filter Grid -->
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-12">
+          <button onclick="filterProducts('all')" id="filter-btn-all" class="px-6 py-2.5 rounded-full font-title font-semibold text-sm bg-brandRed text-white transition-all border border-brandRed shadow-lg">All Beverages</button>
+          <button onclick="filterProducts('citrus')" id="filter-btn-citrus" class="px-6 py-2.5 rounded-full font-title font-semibold text-sm bg-white/5 text-gray-300 hover:text-white transition-all border border-white/10">Citrus Blends</button>
+          <button onclick="filterProducts('berry')" id="filter-btn-berry" class="px-6 py-2.5 rounded-full font-title font-semibold text-sm bg-white/5 text-gray-300 hover:text-white transition-all border border-white/10">Antioxidant Berries</button>
+          <button onclick="filterProducts('specialty')" id="filter-btn-specialty" class="px-6 py-2.5 rounded-full font-title font-semibold text-sm bg-white/5 text-gray-300 hover:text-white transition-all border border-white/10">Specialties & Teas</button>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Populated Dynamically with Products Database from Leaflet -->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================== SECTION: PROMO ================== -->
+    <section id="section-promo" class="view-section py-8 md:py-16 hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Heading -->
+        <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+          <span class="text-xs uppercase tracking-widest font-extrabold text-brandOrange">Special Deals & Fun</span>
+          <h2 class="font-title text-4xl sm:text-5xl font-extrabold tracking-tight">Zest Deals & Offers</h2>
+          <p class="text-gray-400 text-base">
+            Unlock maximum value! Play our interactive Zest Spin Wheel to score discount codes or explore our bundle party packs.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          <!-- Column 1: Interactive Promo Code Spin-The-Wheel Game -->
+          <div class="lg:col-span-6 bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 flex flex-col items-center">
+            <h3 class="font-title text-2xl font-bold text-center mb-2">The Zest Lucky Wheel</h3>
+            <p class="text-xs text-gray-400 text-center mb-6 max-w-sm">
+              Spin the wheel to win official discount codes you can apply directly to your next cart! Limit 1 spin per day.
+            </p>
+
+            <!-- Wheel Interface -->
+            <div class="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center">
+              <!-- Triangle pointer -->
+              <div class="absolute -top-1 z-30 text-brandRed text-3xl transform rotate-180 drop-shadow-md">▲</div>
+              
+              <!-- Spin Canvas Wheel Graphic representation -->
+              <div id="promo-wheel" class="relative w-full h-full rounded-full border-8 border-white/10 bg-[#1e0306] overflow-hidden shadow-2xl transition-transform duration-[4000ms] ease-out flex items-center justify-center">
+                <!-- SVG Wheel content -->
+                <svg viewBox="0 0 200 200" class="w-full h-full transform rotate-0" id="svg-wheel">
+                  <!-- Section 1 -->
+                  <path d="M100,100 L100,0 A100,100 0 0,1 170.7,29.3 Z" fill="#d31321" />
+                  <text x="130" y="55" font-family="'Fredoka'" font-weight="bold" font-size="10" fill="#ffffff" transform="rotate(45 100 100)" text-anchor="middle">15% OFF</text>
+                  
+                  <!-- Section 2 -->
+                  <path d="M100,100 L170.7,29.3 A100,100 0 0,1 200,100 Z" fill="#fb923c" />
+                  <text x="155" y="105" font-family="'Fredoka'" font-weight="bold" font-size="10" fill="#110103" transform="rotate(90 100 100)" text-anchor="middle">FREE MINT</text>
+
+                  <!-- Section 3 -->
+                  <path d="M100,100 L200,100 A100,100 0 0,1 170.7,170.7 Z" fill="#9d0915" />
+                  <text x="130" y="155" font-family="'Fredoka'" font-weight="bold" font-size="10" fill="#ffffff" transform="rotate(135 100 100)" text-anchor="middle">BUY 2 GET 1</text>
+
+                  <!-- Section 4 -->
+                  <path d="M100,100 L170.7,170.7 A100,100 0 0,1 100,200 Z" fill="#eab308" />
+                  <text x="105" y="165" font-family="'Fredoka'" font-weight="bold" font-size="10" fill="#110103" transform="rotate(180 100 100)" text-anchor="middle">FREE UPGRADE</text>
+
+                  <!-- Section 5 -->
+                  <path d="M100,100 L100,200 A100,100 0 0,1 29.3,170.7 Z" fill="#10b981" />
+                  <text x="70" y="155" font-family="'Fredoka'" font-weight="bold" font-size="10" fill="#110103" transform="rotate(225 100 100)" text-anchor="middle">10% OFF</text>
+
+                  <!-- Section 6 -->
+                  <path d="M100,100 L29.3,170.7 A100,100 0 0,1 0,100 Z" fill="#4c0519" />
+                  <text x="45" y="105" font-family="'Fredoka'" font-weight="bold" font-size="10" fill="#ffffff" transform="rotate(270 100 100)" text-anchor="middle">FREE STICKER</text>
+
+                  <!-- Section 7 -->
+                  <path d="M100,100 L0,100 A100,100 0 0,1 29.3,29.3 Z" fill="#f43f5e" />
+                  <text x="70" y="55" font-family="'Fredoka'" font-weight="bold" font-size="10" fill="#ffffff" transform="rotate(315 100 100)" text-anchor="middle">ZESTY GIFT</text>
+
+                  <!-- Section 8 -->
+                  <path d="M100,100 L29.3,29.3 A100,100 0 0,1 100,0 Z" fill="#1e1b4b" />
+                  <text x="105" y="35" font-family="'Fredoka'" font-weight="bold" font-size="10" fill="#ffffff" transform="rotate(360 100 100)" text-anchor="middle">TRY AGAIN</text>
+                </svg>
+
+                <!-- Center Peg Button (Trigger) -->
+                <button onclick="spinTheWheel()" id="wheel-trigger" class="absolute w-16 h-16 bg-white text-brandRed hover:text-brandRed-dark font-title font-extrabold rounded-full flex items-center justify-center shadow-2xl z-20 hover:scale-105 active:scale-95 transition-transform text-xs border-4 border-brandOrange">
+                  SPIN!
+                </button>
+              </div>
+            </div>
+
+            <!-- Win Display Dialog Box -->
+            <div id="wheel-prize-box" class="mt-6 p-4 bg-white/10 border border-white/20 rounded-xl text-center hidden w-full max-w-sm animate-fade-in">
+              <span class="text-xs text-brandOrange uppercase font-extrabold tracking-widest block">You Won!</span>
+              <h4 id="wheel-prize-text" class="font-title text-xl font-bold mt-1 text-white">15% Discount Code</h4>
+              <p class="text-xs text-gray-300 mt-1">Copy this code and input in checkout:</p>
+              <div class="mt-3 flex items-center gap-2 justify-center">
+                <span id="wheel-prize-code" class="px-4 py-1.5 bg-brandRed/20 border border-brandRed/30 text-brandRed-light font-mono font-bold text-sm rounded">ZESTY15</span>
+                <button onclick="copyPromoCode()" class="p-1.5 bg-white/10 hover:bg-white/20 rounded text-xs text-gray-200 hover:text-white" title="Copy to Clipboard">
+                  <i data-lucide="copy" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <span id="copy-feedback" class="text-[10px] text-brandGreen font-semibold mt-1.5 hidden">Copied to Clipboard!</span>
+            </div>
+          </div>
+
+          <!-- Column 2: Exclusive Limited Promo Offers & Bundles -->
+          <div class="lg:col-span-6 space-y-6">
+            
+            <!-- Promo Deal 1: Big Banner Card -->
+            <div class="bg-gradient-to-r from-brandRed-dark via-brandRed to-brandOrange rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden group">
+              <!-- Decorative transparent drink floating background shadow -->
+              <span class="absolute right-0 bottom-0 text-9xl transform translate-x-12 translate-y-6 rotate-12 opacity-10 select-none">🍓</span>
+              
+              <div class="relative z-10 max-w-[70%] space-y-4">
+                <span class="px-3 py-1 bg-yellow-400 text-[#110103] text-xs font-bold font-title rounded-full uppercase tracking-widest">Weekly Deal</span>
+                <h3 class="font-title text-3xl font-extrabold leading-tight">Buy 2, Get 1 Free on all Berry Blends!</h3>
+                <p class="text-sm text-white/90 font-light">
+                  Boost your antioxidants! Order any two strawberry or blueberry cups this week and get the third completely on the house.
+                </p>
+                <button onclick="navigateTo('products')" class="px-5 py-2.5 bg-white text-brandRed hover:bg-brandOrange hover:text-[#110103] font-title font-bold text-sm rounded-xl shadow-lg transition-colors">
+                  Shop Berries Now
+                </button>
+              </div>
+            </div>
+
+            <!-- Promo Deal 2: Bundle Party Packages -->
+            <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 space-y-6">
+              <div>
+                <h3 class="font-title text-2xl font-bold">Zest Bundle Packs</h3>
+                <p class="text-xs text-gray-400 mt-1">Perfect for sharing with friends, parties, or family weekend get-togethers.</p>
+              </div>
+
+              <!-- Pack 1 -->
+              <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-white/5 border border-white/5 rounded-2xl gap-4 hover:border-white/20 transition-all">
+                <div class="space-y-1">
+                  <div class="flex items-center gap-2">
+                    <span class="font-title text-lg font-bold">The Summer Refresh Pack</span>
+                    <span class="text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 bg-brandOrange/20 border border-brandOrange/30 text-brandOrange rounded">Popular</span>
+                  </div>
+                  <p class="text-xs text-gray-300">
+                    Includes 2x Strawberry Lemonade, 2x Sparkling Orange &amp; 2x Blueberry Lemonade.
+                  </p>
+                </div>
+                <div class="flex items-center gap-4 self-end sm:self-auto">
+                  <div class="text-right">
+                    <span class="text-xs text-gray-400 line-through block">$14.94</span>
+                    <span class="font-title text-xl font-black text-brandOrange">$11.99</span>
+                  </div>
+                  <button onclick="addBundleToCart('Summer Refresh Pack', 11.99)" class="p-2.5 bg-brandRed hover:bg-brandRed-light text-white rounded-xl transition-colors">
+                    <i data-lucide="plus" class="w-5 h-5"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Pack 2 -->
+              <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-white/5 border border-white/5 rounded-2xl gap-4 hover:border-white/20 transition-all">
+                <div class="space-y-1">
+                  <span class="font-title text-lg font-bold">Ultimate Sweet &amp; Creamy Pack</span>
+                  <p class="text-xs text-gray-300">
+                    Includes 2x Strawberry Milkshake, 2x Matcha Latte &amp; 2x Peach Tea.
+                  </p>
+                </div>
+                <div class="flex items-center gap-4 self-end sm:self-auto">
+                  <div class="text-right">
+                    <span class="text-xs text-gray-400 line-through block">$14.54</span>
+                    <span class="font-title text-xl font-black text-brandOrange">$10.99</span>
+                  </div>
+                  <button onclick="addBundleToCart('Ultimate Sweet & Creamy Pack', 10.99)" class="p-2.5 bg-brandRed hover:bg-brandRed-light text-white rounded-xl transition-colors">
+                    <i data-lucide="plus" class="w-5 h-5"></i>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Loyalty Program Section -->
+            <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 space-y-4">
+              <h3 class="font-title text-xl font-bold">Join the Zest Club</h3>
+              <p class="text-sm text-gray-300">
+                Unlock instant membership. Sign up your email below to receive an official <strong class="text-brandOrange">15% discount code</strong> instantly in your inbox for your first store purchase.
+              </p>
+              
+              <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                <input type="email" id="loyalty-email" placeholder="Enter your email address" class="flex-grow px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-brandOrange text-white text-sm" />
+                <button onclick="joinLoyaltyClub()" class="px-6 py-3 bg-brandOrange hover:bg-white text-[#110103] font-title font-bold rounded-xl text-sm transition-colors">
+                  Join Club
+                </button>
+              </div>
+              <p id="loyalty-feedback" class="text-xs text-brandGreen font-semibold hidden">Success! Check your email inbox for your 15% discount coupon.</p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================== SECTION: ABOUT ================== -->
+    <section id="section-about" class="view-section py-8 md:py-16 hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+        
+        <!-- Grid: History & Mission -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Left side visuals matching leaflet details -->
+          <div class="lg:col-span-5 relative">
+            <div class="relative z-10 rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-white/5 p-8 flex flex-col items-center">
+              <div class="w-32 h-32 bg-brandRed/20 rounded-full flex items-center justify-center animate-bounce mb-6 border border-brandRed/30">
+                <span class="text-6xl">🍓</span>
+              </div>
+              <h4 class="font-title text-2xl font-bold text-center text-brandOrange">Zestifyy's Promise</h4>
+              <p class="text-sm text-gray-300 text-center mt-3 leading-relaxed">
+                Provide high-quality, delicious beverages that deliver authentic, natural freshness. We aim to enhance our customers' health and provide the vibrant energy needed for their daily lives.
+              </p>
+            </div>
+            <!-- Decorative backdrop glow -->
+            <div class="absolute -top-6 -left-6 w-full h-full bg-brandRed/10 rounded-3xl -z-10 transform -rotate-3"></div>
+          </div>
+
+          <!-- Right side details -->
+          <div class="lg:col-span-7 space-y-6">
+            <span class="text-xs uppercase tracking-widest font-extrabold text-brandOrange">About Our Brand</span>
+            <h2 class="font-title text-4xl sm:text-5xl font-extrabold leading-tight">Authentic. Fresh. Full of Vitality.</h2>
+            
+            <p class="text-gray-300 text-base md:text-lg leading-relaxed">
+              Zestifyy was born out of a desire to break away from sterile, sugar-laden, chemically formulated juices. We wanted to celebrate raw fruit pulp, rich textures, and the beautiful zesty energy of freshly squeezed natural ingredients.
+            </p>
+
+            <div class="space-y-4 pt-4">
+              <div class="flex items-start gap-4">
+                <div class="p-2 bg-brandRed/20 text-brandRed-light rounded-lg mt-1">
+                  <i data-lucide="check" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-title text-lg font-bold">Hand-Picked Fruit Selection</h4>
+                  <p class="text-sm text-gray-400">Only the sweetest strawberries, plumpest blueberries, and crispiest citrus fruits make it into our extraction process.</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-4">
+                <div class="p-2 bg-brandOrange/20 text-brandOrange rounded-lg mt-1">
+                  <i data-lucide="check" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-title text-lg font-bold">100% Sustainable Green Vision</h4>
+                  <p class="text-sm text-gray-400">Our vision is to become the leading national beverage brand, earning the highest level of trust and support in the health and refreshment category.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Interactive Infographic Process -->
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-8 sm:p-12 space-y-8">
+          <div class="text-center max-w-2xl mx-auto space-y-2">
+            <h3 class="font-title text-2xl sm:text-3xl font-bold">From Tree to Cup Process</h3>
+            <p class="text-xs text-gray-400">The journey of pure quality. Click any step to learn how we preserve active vitamins.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-6 pt-4">
+            <div onclick="showProcessDetail(1)" id="process-1" class="p-6 bg-brandRed/10 border border-brandRed/30 rounded-2xl cursor-pointer hover:bg-brandRed/20 transition-all text-center">
+              <span class="text-3xl block mb-2">🌳</span>
+              <h4 class="font-title font-bold text-sm">1. Sourcing</h4>
+              <p class="text-xs text-gray-300 mt-2">Grown and harvested in sustainable fruit orchards.</p>
+            </div>
+            
+            <div onclick="showProcessDetail(2)" id="process-2" class="p-6 bg-white/5 border border-white/5 rounded-2xl cursor-pointer hover:bg-brandRed/20 transition-all text-center">
+              <span class="text-3xl block mb-2">🧼</span>
+              <h4 class="font-title font-bold text-sm">2. Cold Washing</h4>
+              <p class="text-xs text-gray-300 mt-2">Sanitized gently in freezing temperature mountain spring water.</p>
+            </div>
+
+            <div onclick="showProcessDetail(3)" id="process-3" class="p-6 bg-white/5 border border-white/5 rounded-2xl cursor-pointer hover:bg-brandRed/20 transition-all text-center">
+              <span class="text-3xl block mb-2">🍹</span>
+              <h4 class="font-title font-bold text-sm">3. Extraction</h4>
+              <p class="text-xs text-gray-300 mt-2">Slow-masticated crushing to lock in delicate antioxidants.</p>
+            </div>
+
+            <div onclick="showProcessDetail(4)" id="process-4" class="p-6 bg-white/5 border border-white/5 rounded-2xl cursor-pointer hover:bg-brandRed/20 transition-all text-center">
+              <span class="text-3xl block mb-2">🥤</span>
+              <h4 class="font-title font-bold text-sm">4. Serving</h4>
+              <p class="text-xs text-gray-300 mt-2">Hand-mixed with fresh ice, whole berries, and lemon zest.</p>
+            </div>
+          </div>
+
+          <!-- Dynamic details box -->
+          <div id="process-detail-box" class="p-5 bg-white/5 border border-white/10 rounded-2xl text-center text-sm text-gray-300 animate-fade-in">
+            <strong>Active Sourcing Process:</strong> We partner with local farmers worldwide, ensuring that all our citrus and berries are harvested at peak ripeness when fructose levels are completely natural.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================== SECTION: CONTACT ================== -->
+    <section id="section-contact" class="view-section py-8 md:py-16 hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+          <span class="text-xs uppercase tracking-widest font-extrabold text-brandOrange">Contact Us</span>
+          <h2 class="font-title text-4xl sm:text-5xl font-extrabold tracking-tight">Say Hello to Zestifyy!</h2>
+          <p class="text-gray-400 text-base">
+            Have questions about ordering, store catering, or looking for a job? Drop us a message below or call us.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          <!-- Column 1: Contact details & Map mockup -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 space-y-6">
+              <h3 class="font-title text-2xl font-bold">Contact Info</h3>
+              
+              <div class="space-y-4">
+                <a href="tel:+855963686548" class="flex items-center gap-4 p-3 bg-white/5 hover:bg-white/10 rounded-2xl transition-colors">
+                  <div class="w-10 h-10 bg-brandOrange/20 text-brandOrange rounded-xl flex items-center justify-center">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs text-gray-400 block font-semibold">Store Manager Phone</span>
+                    <span class="text-sm font-bold text-white">+855 963-686-548</span>
+                  </div>
+                </a>
+
+                <a href="tel:+855973333499" class="flex items-center gap-4 p-3 bg-white/5 hover:bg-white/10 rounded-2xl transition-colors">
+                  <div class="w-10 h-10 bg-brandOrange/20 text-brandOrange rounded-xl flex items-center justify-center">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs text-gray-400 block font-semibold">Catering Support Phone</span>
+                    <span class="text-sm font-bold text-white">+855 973-333-499</span>
+                  </div>
+                </a>
+
+                <div class="flex items-center gap-4 p-3 bg-white/5 rounded-2xl">
+                  <div class="w-10 h-10 bg-brandRed/20 text-brandRed-light rounded-xl flex items-center justify-center">
+                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs text-gray-400 block font-semibold">Our Location Address</span>
+                    <span class="text-sm font-bold text-white">Street 2004, Phnom Penh, Cambodia</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-4 p-3 bg-white/5 rounded-2xl">
+                  <div class="w-10 h-10 bg-brandGreen/20 text-brandGreen rounded-xl flex items-center justify-center">
+                    <i data-lucide="globe" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs text-gray-400 block font-semibold">Website Portal</span>
+                    <span class="text-sm font-bold text-white">www.Zestifyy.com</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Address Location Finder Map Visual Mockup -->
+              <div class="space-y-2 pt-2">
+                <span class="text-xs text-gray-400 font-bold block uppercase tracking-wider">Locate Us in Phnom Penh</span>
+                <div class="relative w-full h-44 bg-zinc-900 border border-white/10 rounded-2xl overflow-hidden flex items-center justify-center">
+                  <!-- Abstract CSS-built Minimal Map representing Street 2004 -->
+                  <div class="absolute inset-0 opacity-20">
+                    <div class="absolute top-1/2 left-0 w-full h-4 bg-gray-500 transform -translate-y-1/2"></div> <!-- Street 2004 -->
+                    <div class="absolute left-1/3 top-0 w-4 h-full bg-gray-500"></div>
+                    <div class="absolute right-1/4 top-0 w-4 h-full bg-gray-500"></div>
+                  </div>
+                  <div class="relative z-10 text-center space-y-1">
+                    <div class="inline-flex w-8 h-8 bg-brandRed text-white rounded-full items-center justify-center animate-bounce shadow-md">
+                      <i data-lucide="map-pin" class="w-5 h-5"></i>
+                    </div>
+                    <span class="block font-bold text-xs text-white">Street 2004 Outlet</span>
+                    <span class="block text-[10px] text-gray-400">Open Daily: 8:00 AM - 9:00 PM</span>
+                  </div>
+                  <button onclick="window.open('https://maps.google.com')" class="absolute bottom-2 right-2 px-3 py-1 bg-white/10 hover:bg-white/20 text-[10px] rounded-lg transition-colors border border-white/10">Open Google Maps</button>
+                </div>
+              </div>
+
+              <!-- Simulated Menu Leaflet QR Code (Clickable) -->
+              <div class="p-4 bg-brandRed/10 border border-brandRed/30 rounded-2xl flex items-center gap-4">
+                <div class="w-16 h-16 bg-white p-1 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <!-- CSS Generated Abstract QR Mockup -->
+                  <div class="w-full h-full bg-zinc-900 rounded grid grid-cols-4 gap-0.5 p-1">
+                    <div class="bg-white"></div><div class="bg-zinc-900"></div><div class="bg-white"></div><div class="bg-white"></div>
+                    <div class="bg-zinc-900"></div><div class="bg-white"></div><div class="bg-white"></div><div class="bg-zinc-900"></div>
+                    <div class="bg-white"></div><div class="bg-white"></div><div class="bg-zinc-900"></div><div class="bg-white"></div>
+                    <div class="bg-white"></div><div class="bg-zinc-900"></div><div class="bg-white"></div><div class="bg-white"></div>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-title text-sm font-bold text-white">Scan digital Menu Leaflet</h4>
+                  <p class="text-[11px] text-gray-300 mt-1">Scan or tap to load full menu leaflet and promotional bundles directly onto your mobile.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Column 2: Elegant Direct Message Form -->
+          <div class="lg:col-span-7 bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8">
+            <h3 class="font-title text-2xl font-bold mb-6">Send us a direct message</h3>
+            
+            <form onsubmit="handleContactSubmit(event)" class="space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="space-y-1.5">
+                  <label for="contact-name" class="text-xs text-gray-400 font-bold uppercase tracking-wider">Your Name</label>
+                  <input type="text" id="contact-name" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-brandOrange text-white text-sm" placeholder="John Doe" />
+                </div>
+                
+                <div class="space-y-1.5">
+                  <label for="contact-email" class="text-xs text-gray-400 font-bold uppercase tracking-wider">Email Address</label>
+                  <input type="email" id="contact-email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-brandOrange text-white text-sm" placeholder="john@example.com" />
+                </div>
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="contact-subject" class="text-xs text-gray-400 font-bold uppercase tracking-wider">Subject Topic</label>
+                <select id="contact-subject" class="w-full px-4 py-3 bg-[#1e0306] border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-brandOrange text-white text-sm">
+                  <option value="General Inquiry">General Inquiry / Customer Feedback</option>
+                  <option value="Catering Service">Store Catering &amp; Birthday Party Packs</option>
+                  <option value="Wholesale">Wholesale &amp; Retail Supply Partnership</option>
+                  <option value="Jobs">Careers &amp; Employment Opportunities</option>
+                </select>
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="contact-message" class="text-xs text-gray-400 font-bold uppercase tracking-wider">Message Details</label>
+                <textarea id="contact-message" rows="5" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-brandOrange text-white text-sm" placeholder="Type your message details here..."></textarea>
+              </div>
+
+              <!-- Newsletter Checkbox -->
+              <div class="flex items-center gap-3">
+                <input type="checkbox" id="contact-newsletter" class="w-4 h-4 accent-brandOrange bg-white/5 border border-white/10 rounded" checked />
+                <label for="contact-newsletter" class="text-xs text-gray-300">Yes! I want to receive seasonal fruit promo codes &amp; party updates.</label>
+              </div>
+
+              <button type="submit" class="w-full py-4 bg-brandRed hover:bg-brandRed-light text-white font-title font-bold rounded-xl transition-all hover:scale-[1.01] shadow-lg flex items-center justify-center gap-2">
+                <i data-lucide="send" class="w-4 h-4"></i> Send Message
+              </button>
+            </form>
+
+            <!-- Message success popup window -->
+            <div id="contact-success-box" class="mt-4 p-4 bg-brandGreen/20 border border-brandGreen/30 rounded-xl text-center hidden animate-fade-in">
+              <span class="text-brandGreen font-bold text-sm block">✓ Message Sent Successfully!</span>
+              <p class="text-xs text-gray-300 mt-1">Our customer experience manager will reach out within 24 business hours.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ================== SHOPPING CART DRAWER PANEL ================== -->
+  <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full sm:w-[420px] bg-[#110103]/95 backdrop-blur-2xl border-l border-white/10 z-50 shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300">
+    
+    <!-- Drawer Header -->
+    <div class="p-6 border-b border-white/5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <i data-lucide="shopping-bag" class="w-6 h-6 text-brandOrange"></i>
+        <h3 class="font-title text-xl font-bold">Your Beverage Cart</h3>
+      </div>
+      <button onclick="toggleCartDrawer()" class="p-1.5 bg-white/5 rounded-full hover:bg-white/10 transition-colors">
+        <i data-lucide="x" class="w-5 h-5 text-gray-400 hover:text-white"></i>
+      </button>
+    </div>
+
+    <!-- Scrollable Drawer Items Container -->
+    <div id="cart-items-container" class="flex-grow overflow-y-auto p-6 space-y-4 no-scrollbar">
+      <!-- Dynamic list added via script -->
+    </div>
+
+    <!-- Drawer Footer and Checkout Summary -->
+    <div class="p-6 border-t border-white/5 bg-white/[0.02] space-y-4">
+      <div class="space-y-2 text-sm text-gray-300">
+        <div class="flex justify-between">
+          <span>Cart Subtotal</span>
+          <span id="cart-subtotal" class="font-bold text-white">$0.00</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Apply Promo Discount Code</span>
+          <div class="flex gap-2">
+            <input type="text" id="promo-code-input" placeholder="CODE" class="w-20 px-2 py-1 bg-white/5 border border-white/10 rounded uppercase font-mono text-center text-xs text-white uppercase" />
+            <button onclick="applyPromoCode()" class="px-3 py-1 bg-brandOrange/20 border border-brandOrange/30 text-brandOrange rounded text-xs font-bold hover:bg-brandOrange hover:text-[#110103] transition-colors">Apply</button>
+          </div>
+        </div>
+        <div id="applied-discount-row" class="flex justify-between text-brandGreen font-semibold hidden">
+          <span>Discount (<span id="applied-discount-pct">0</span>%)</span>
+          <span>-$<span id="applied-discount-val">0.00</span></span>
+        </div>
+        <div class="flex justify-between">
+          <span>Eco Packing &amp; Taxes</span>
+          <span class="font-bold text-white">FREE</span>
+        </div>
+        <div class="flex justify-between text-lg text-white font-black border-t border-white/5 pt-2">
+          <span>Total Payable</span>
+          <span id="cart-total" class="font-title text-brandOrange">$0.00</span>
+        </div>
+      </div>
+
+      <button onclick="openCheckoutModal()" class="w-full py-4 bg-gradient-to-r from-brandOrange to-brandRed hover:from-brandRed-light hover:to-brandOrange text-[#110103] hover:text-white font-title font-bold rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
+        <i data-lucide="credit-card" class="w-5 h-5"></i> Checkout Order
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ================== PRODUCT NUTRITION FACTS MODAL ================== -->
+  <div id="nutrition-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center px-4 hidden">
+    <div class="bg-[#150204] border border-white/10 rounded-3xl w-full max-w-md p-6 relative animate-fade-in">
+      <!-- Close button -->
+      <button onclick="closeNutritionModal()" class="absolute top-4 right-4 p-1 bg-white/5 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="text-center pb-4 border-b border-white/10">
+        <span class="text-xs uppercase tracking-widest font-extrabold text-brandOrange">Zestifyy Nutrition Lab</span>
+        <h3 id="nutri-title" class="font-title text-2xl font-bold mt-1">Strawberry Lemonade</h3>
+        <p class="text-xs text-gray-400 mt-1">Standard serving size: 16 FL OZ (473ml)</p>
+      </div>
+
+      <!-- Real classic Nutrition Facts panel design -->
+      <div class="mt-4 border-4 border-white p-4 text-white font-mono bg-zinc-950 rounded-xl space-y-1">
+        <h4 class="text-xl font-black border-b-8 border-white pb-1">Nutrition Facts</h4>
+        <div class="text-xs font-bold border-b-2 border-white pb-1">
+          Amount Per Serving
+          <div class="flex justify-between text-lg font-black mt-0.5">
+            <span>Calories</span>
+            <span id="nutri-calories">90</span>
+          </div>
+        </div>
+        <div class="text-xs font-bold text-right border-b border-white py-0.5">% Daily Value*</div>
+        
+        <div class="flex justify-between text-xs border-b border-white py-1">
+          <span><strong>Total Fat</strong> 0g</span>
+          <span>0%</span>
+        </div>
+        <div class="flex justify-between text-xs border-b border-white py-1">
+          <span><strong>Sodium</strong> 5mg</span>
+          <span>0%</span>
+        </div>
+        <div class="flex justify-between text-xs border-b border-white py-1 font-semibold">
+          <span><strong>Total Carbohydrate</strong> <span id="nutri-carbs">18g</span></span>
+          <span>7%</span>
+        </div>
+        <div class="flex justify-between text-xs border-b border-white py-1 pl-4">
+          <span>Dietary Fiber 1.5g</span>
+          <span>5%</span>
+        </div>
+        <div class="flex justify-between text-xs border-b border-white py-1 pl-4">
+          <span>Total Sugars <span id="nutri-sugars">15g</span></span>
+          <span></span>
+        </div>
+        <div class="flex justify-between text-xs border-b border-white py-1 pl-8 text-gray-400">
+          <span>Includes 0g Added Sugars</span>
+          <span>0%</span>
+        </div>
+        <div class="flex justify-between text-xs border-b-4 border-white py-1">
+          <span><strong>Protein</strong> 0.5g</span>
+          <span>1%</span>
+        </div>
+
+        <!-- Vitamins -->
+        <div class="flex justify-between text-xs border-b border-white py-1">
+          <span>Vitamin C <span id="nutri-vitc">100%</span></span>
+          <span>Antioxidant Power</span>
+        </div>
+        <div class="flex justify-between text-xs border-b border-white py-1">
+          <span>Potassium 120mg</span>
+          <span>Fresh Boost</span>
+        </div>
+        <p class="text-[9px] text-gray-400 pt-2 leading-tight">
+          * Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================== INTERACTIVE CHECKOUT SUCCESS MODAL ================== -->
+  <div id="checkout-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center px-4 hidden">
+    <div class="bg-[#150204] border border-white/10 rounded-3xl w-full max-w-lg p-6 sm:p-8 relative">
+      <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 p-1.5 bg-white/5 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Step 1: Input details form -->
+      <div id="checkout-step-details" class="space-y-6">
+        <div class="text-center">
+          <i data-lucide="shopping-bag" class="w-12 h-12 text-brandOrange mx-auto mb-2 animate-bounce"></i>
+          <h3 class="font-title text-2xl font-bold">Secure Delivery Details</h3>
+          <p class="text-xs text-gray-400 mt-1">We currently deliver directly across Phnom Penh outlets.</p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-1">
+              <label class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Receiver Name</label>
+              <input type="text" id="check-name" class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-1 focus:ring-brandOrange text-white text-sm" placeholder="Sok Dara" />
+            </div>
+            <div class="space-y-1">
+              <label class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Phone Number</label>
+              <input type="text" id="check-phone" class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-1 focus:ring-brandOrange text-white text-sm" placeholder="+855 12 345 678" />
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Phnom Penh Delivery Address</label>
+            <input type="text" id="check-address" class="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-1 focus:ring-brandOrange text-white text-sm" placeholder="No. 45, Street 2004, Phnom Penh" />
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Payment Method</label>
+            <div class="grid grid-cols-2 gap-3">
+              <label class="flex items-center gap-2 p-3 bg-white/5 border border-white/10 rounded-xl cursor-pointer hover:bg-white/10 transition-colors">
+                <input type="radio" name="payment-opt" value="cod" checked class="accent-brandOrange" />
+                <span class="text-xs font-semibold text-white">Cash on Delivery</span>
+              </label>
+              <label class="flex items-center gap-2 p-3 bg-white/5 border border-white/10 rounded-xl cursor-pointer hover:bg-white/10 transition-colors">
+                <input type="radio" name="payment-opt" value="aba" class="accent-brandOrange" />
+                <span class="text-xs font-semibold text-white">ABA Mobile Pay</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="submitCheckoutOrder()" class="w-full py-4 bg-brandRed hover:bg-brandRed-light text-white font-title font-bold rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
+          Confirm &amp; Place Order (<span id="checkout-btn-total">$0.00</span>)
+        </button>
+      </div>
+
+      <!-- Step 2: Gorgeous order placed complete screen -->
+      <div id="checkout-step-success" class="space-y-6 text-center hidden py-6">
+        <div class="w-20 h-20 bg-brandGreen/20 border border-brandGreen/30 text-brandGreen rounded-full flex items-center justify-center mx-auto mb-4 animate-scale-up">
+          <i data-lucide="check-circle" class="w-12 h-12"></i>
+        </div>
+        <h3 class="font-title text-3xl font-bold text-white">Zestifyy Order Placed!</h3>
+        <p class="text-sm text-gray-300 max-w-sm mx-auto">
+          Fantastic choice! Your order has been registered in our system and is currently being packed with fresh fruits.
+        </p>
+        
+        <div class="p-4 bg-white/5 rounded-2xl border border-white/10 text-left space-y-2 max-w-md mx-auto text-xs text-gray-300">
+          <div class="flex justify-between">
+            <span>Customer Name:</span>
+            <strong class="text-white" id="receipt-name">Soriya</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Contact Number:</span>
+            <strong class="text-white" id="receipt-phone">+855 12 345 678</strong>
+          </div>
+          <div class="flex justify-between">
+            <span>Delivery Destination:</span>
+            <strong class="text-white" id="receipt-address">Street 2004, Phnom Penh</strong>
+          </div>
+          <div class="flex justify-between text-brandOrange font-bold border-t border-white/5 pt-2 text-sm">
+            <span>Total Payable:</span>
+            <span id="receipt-total">$0.00</span>
+          </div>
+        </div>
+
+        <p class="text-[11px] text-gray-400">Our representative will call your number to verify transit timing shortly!</p>
+        
+        <button onclick="closeCheckoutModal(); clearCart()" class="px-8 py-3 bg-brandOrange text-[#110103] hover:bg-white font-title font-bold rounded-xl transition-colors">
+          Awesome! Back to Browsing
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ================== MASTER FOOTER ================== -->
+  <footer class="bg-[#0b0102] border-t border-white/5 py-12 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      
+      <!-- Brand column -->
+      <div class="md:col-span-4 space-y-4">
+        <!-- Logo Zone in Footer -->
+        <div class="relative w-40 h-14 overflow-hidden flex items-center justify-start rounded-xl">
+          <img src="img/logo.png" alt="Zestifyy Logo" class="absolute h-[160%] w-auto max-w-none object-cover" style="left: -12px; top: -14px; transform-origin: left center;" onerror="this.style.display='none'; document.getElementById('css-footer-logo-fallback').classList.remove('hidden');">
+          <span id="css-footer-logo-fallback" class="hidden font-title text-3xl font-black tracking-tight logo-3d">Zestifyy</span>
+        </div>
+        <p class="text-xs text-gray-400 max-w-xs leading-relaxed">
+          The ultimate organic beverage brand. Redefining refreshment with bold fruit extracts, fresh mocktails, and incredible vitality.
+        </p>
+        <div class="flex items-center gap-3 pt-2">
+          <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-brandOrange hover:text-[#110103] transition-all" aria-label="Facebook"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+          <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-brandOrange hover:text-[#110103] transition-all" aria-label="Instagram"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+          <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-brandOrange hover:text-[#110103] transition-all" aria-label="Twitter"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+          <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-brandOrange hover:text-[#110103] transition-all" aria-label="Send"><i data-lucide="send" class="w-4 h-4"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Nav Links -->
+      <div class="md:col-span-4 space-y-3">
+        <h4 class="font-title text-sm font-bold text-white uppercase tracking-wider">Quick Exploration</h4>
+        <div class="grid grid-cols-2 gap-2 text-xs text-gray-400">
+          <button onclick="navigateTo('home')" class="text-left hover:text-brandOrange transition-colors">Home Page</button>
+          <button onclick="navigateTo('products')" class="text-left hover:text-brandOrange transition-colors">Beverage Menu</button>
+          <button onclick="navigateTo('promo')" class="text-left hover:text-brandOrange transition-colors">Exclusive Promos</button>
+          <button onclick="navigateTo('about')" class="text-left hover:text-brandOrange transition-colors">About Story</button>
+          <button onclick="navigateTo('contact')" class="text-left hover:text-brandOrange transition-colors">Find Location</button>
+          <a href="#" onclick="openCheckoutModal()" class="hover:text-brandOrange transition-colors">Express Checkout</a>
+        </div>
+      </div>
+
+      <!-- Quick contact details -->
+      <div class="md:col-span-4 space-y-3 text-xs text-gray-400">
+        <h4 class="font-title text-sm font-bold text-white uppercase tracking-wider">Store Outlets</h4>
+        <p class="leading-relaxed">Address: Street 2004, Phnom Penh, Cambodia</p>
+        <p>Support Call: +855 963-686-548</p>
+        <p>Website: <a href="#" class="text-brandOrange hover:underline">www.Zestifyy.com</a></p>
+        <p class="text-[10px] text-gray-500 pt-2">© 2026 Zestifyy Beverages Ltd. Crafted for pure health &amp; vitality.</p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ================== SCRIPT & DATABASE LOGIC ================== -->
+  <script>
+    // -------------------------------------------------------------
+    // BEVERAGE PRODUCTS DATABASE (Including rich photography URLs matching each product)
+    // -------------------------------------------------------------
+    const productsDatabase = [
+      {
+        id: 'straw-lemon',
+        title: 'Strawberry Lemonade',
+        price: 2.99,
+        category: 'berry',
+        desc: 'Rich strawberry pulp swirled with premium freshly squeezed lemon citrus. Sweet, tart, and deeply fresh.',
+        calories: 90,
+        carbs: '18g',
+        sugars: '15g',
+        vitc: '100%',
+        emoji: '🍓',
+        image: "img/Picture.png",
+        colorClass: 'from-brandRed-dark via-brandRed to-brandOrange',
+        svgJuiceColor: '#be123c',
+        highlight: true
+      },
+      {
+        id: 'blue-lemon',
+        title: 'Sparkling Blueberry Lemonade',
+        price: 2.49,
+        category: 'berry',
+        desc: 'Antioxidant-rich organic dark blueberry swirl mixed with sparkling mountain spring soda and a touch of lemon.',
+        calories: 85,
+        carbs: '16g',
+        sugars: '13g',
+        vitc: '85%',
+        emoji: '🫐',
+        image: 'img/Picture (1).png',
+        colorClass: 'from-blue-900 via-blue-700 to-indigo-500',
+        svgJuiceColor: '#1e40af',
+        highlight: true
+      },
+      {
+        id: 'orange-splash',
+        title: 'Sparkling Orange',
+        price: 1.99,
+        category: 'citrus',
+        desc: 'Brimming with fresh mandarin juices, crushed citrus slices, and natural dynamic carbonation.',
+        calories: 70,
+        carbs: '14g',
+        sugars: '11g',
+        vitc: '120%',
+        emoji: '🍊',
+        image: 'img/Orange.png',
+        colorClass: 'from-brandOrange via-orange-500 to-amber-400',
+        svgJuiceColor: '#ea580c',
+        highlight: true
+      },
+      {
+        id: 'matcha-latte',
+        title: 'Matcha Latte Extra',
+        price: 2.29,
+        category: 'specialty',
+        desc: 'Premium organic green tea powder whisked to perfection with rich creamy plant milk. Sweet and calming.',
+        calories: 120,
+        carbs: '10g',
+        sugars: '8g',
+        vitc: '40%',
+        emoji: '🍵',
+        image: 'img/Matcha.png',
+        colorClass: 'from-green-800 via-emerald-600 to-teal-400',
+        svgJuiceColor: '#065f46'
+      },
+      {
+        id: 'peach-tea',
+        title: 'Fresh Peach Tea',
+        price: 1.99,
+        category: 'specialty',
+        desc: 'A staple classic! Slow-brewed black tea base infused with sweet juicy peach slices and mountain honey.',
+        calories: 80,
+        carbs: '15g',
+        sugars: '12g',
+        vitc: '60%',
+        emoji: '🍑',
+        image: 'img/Peach.png',
+        colorClass: 'from-yellow-700 via-yellow-500 to-orange-400',
+        svgJuiceColor: '#d97706'
+      },
+      {
+        id: 'straw-shake',
+        title: 'Strawberry Milkshake',
+        price: 2.99,
+        category: 'specialty',
+        desc: 'Thick, creamy blend of organic vanilla bean yogurt base and whole fresh picked sweet strawberries.',
+        calories: 180,
+        carbs: '22g',
+        sugars: '19g',
+        vitc: '95%',
+        emoji: '🥤',
+        image: 'img/Strawcream.png',
+        colorClass: 'from-rose-600 via-pink-400 to-rose-200',
+        svgJuiceColor: '#f43f5e'
+      }
+    ];
+
+    // Global application state
+    let activeSection = 'home';
+    let showcaseIndex = 0;
+    const highlightProducts = productsDatabase.filter(p => p.highlight);
+    
+    let shoppingCart = [];
+    let appliedDiscountPct = 0;
+
+    // Initialize Page load
+    window.addEventListener('DOMContentLoaded', () => {
+      // Setup Lucide icons
+      lucide.createIcons();
+      
+      // Load initial Home Showcase display details
+      updateShowcaseDisplay();
+      
+      // Load entire dynamic product grid
+      renderProductGrid();
+
+      // Setup active state nav highlights
+      navigateTo('home');
+    });
+
+    // -------------------------------------------------------------
+    // NAVIGATION LOGIC
+    // -------------------------------------------------------------
+    function navigateTo(sectionId) {
+      // Hide all sections
+      document.querySelectorAll('.view-section').forEach(sec => sec.classList.add('hidden'));
+      
+      // Show requested section
+      const activeSec = document.getElementById(`section-${sectionId}`);
+      if (activeSec) {
+        activeSec.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Update Navigation Links active CSS states
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('text-brandOrange', 'border-brandOrange');
+        link.classList.add('text-gray-300', 'border-transparent');
+      });
+
+      const activeLink = document.getElementById(`nav-${sectionId}`);
+      if (activeLink) {
+        activeLink.classList.remove('text-gray-300', 'border-transparent');
+        activeLink.classList.add('text-brandOrange', 'border-brandOrange');
+      }
+
+      activeSection = sectionId;
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const hamburger = document.getElementById('menu-icon-hamburger');
+      const close = document.getElementById('menu-icon-close');
+      
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        hamburger.classList.add('hidden');
+        close.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+        hamburger.classList.remove('hidden');
+        close.classList.add('hidden');
+      }
+    }
+
+    // -------------------------------------------------------------
+    // HOME SHOWCASE LOGIC (Slide through highlighting premium cups)
+    // -------------------------------------------------------------
+    function updateShowcaseDisplay() {
+      const prod = highlightProducts[showcaseIndex];
+      
+      // Update Text details
+      document.getElementById('showcase-title').innerText = prod.title;
+      document.getElementById('showcase-desc').innerText = prod.desc;
+      document.getElementById('showcase-price').innerText = `$${prod.price}`;
+
+      // Update external floating fruit emojis
+      const extFruits = {
+        'straw-lemon': ['🍓', '🍋'],
+        'blue-lemon': ['🫐', '🍋'],
+        'orange-splash': ['🍊', '🍃']
+      };
+      
+      const fruits = extFruits[prod.id] || ['🍓', '🍋'];
+      document.getElementById('ext-fruit-left').innerText = fruits[0];
+      document.getElementById('ext-fruit-right').innerText = fruits[1];
+
+      // Update Dynamic SVG liquid fill color
+      document.getElementById('svg-juice-fluid').style.fill = prod.svgJuiceColor;
+      
+      // Dynamically load SVG inner fruit slices based on selected product
+      const inner1 = document.getElementById('svg-inner-fruit-1');
+      const inner2 = document.getElementById('svg-inner-fruit-2');
+      
+      if (prod.id === 'straw-lemon') {
+        inner1.setAttribute('transform', 'translate(100, 110)');
+        inner2.setAttribute('transform', 'translate(120, 230) rotate(-45)');
+        inner1.style.display = 'block';
+        inner2.style.display = 'block';
+      } else if (prod.id === 'blue-lemon') {
+        inner1.setAttribute('transform', 'translate(90, 130)');
+        inner2.setAttribute('transform', 'translate(130, 200)');
+        inner1.style.display = 'block';
+        inner2.style.display = 'block';
+      } else { // orange
+        inner1.style.display = 'none'; // Only 1 orange segment inside
+        inner2.setAttribute('transform', 'translate(110, 160) rotate(20)');
+        inner2.style.display = 'block';
+      }
+
+      // Generate Navigation Dots
+      const dotsContainer = document.getElementById('showcase-dots');
+      dotsContainer.innerHTML = '';
+      highlightProducts.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = `w-2.5 h-2.5 rounded-full transition-all ${i === showcaseIndex ? 'bg-brandOrange w-6' : 'bg-white/20'}`;
+        dot.onclick = () => { showcaseIndex = i; updateShowcaseDisplay(); };
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    function changeShowcaseProduct(dir) {
+      showcaseIndex += dir;
+      if (showcaseIndex < 0) showcaseIndex = highlightProducts.length - 1;
+      if (showcaseIndex >= highlightProducts.length) showcaseIndex = 0;
+      updateShowcaseDisplay();
+    }
+
+    // -------------------------------------------------------------
+    // PRODUCTS FILTER & GRID RENDER LOGIC
+    // -------------------------------------------------------------
+    function renderProductGrid(filterCategory = 'all') {
+      const grid = document.getElementById('product-grid');
+      grid.innerHTML = '';
+
+      const filtered = filterCategory === 'all' 
+        ? productsDatabase 
+        : productsDatabase.filter(p => p.category === filterCategory);
+
+      filtered.forEach(prod => {
+        const card = document.createElement('div');
+        card.className = "bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-6 flex flex-col justify-between hover:scale-[1.02] transition-all duration-300 relative group overflow-hidden shadow-lg";
+        
+        card.innerHTML = `
+          <!-- Glass fruit shadow decoration on hover -->
+          <div class="absolute -top-10 -right-10 w-24 h-24 bg-white/5 rounded-full blur-xl group-hover:bg-brandOrange/10 transition-colors"></div>
+          
+          <div class="space-y-4">
+            <!-- Full Premium Photography Image Header -->
+            <div class="relative w-full h-48 rounded-2xl overflow-hidden mb-4 bg-[#1e0306] border border-white/5">
+              <img src="${prod.image}" alt="${prod.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80'">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              
+              <!-- Floating category indicator -->
+              <div class="absolute top-3 right-3 w-10 h-10 bg-gradient-to-tr ${prod.colorClass || 'from-brandRed-dark to-brandRed'} rounded-xl flex items-center justify-center text-xl shadow-md border border-white/10">
+                ${prod.emoji}
+              </div>
+            </div>
+            
+            <div class="space-y-1">
+              <h3 class="font-title text-xl font-bold text-white group-hover:text-brandOrange transition-colors">${prod.title}</h3>
+              <span class="text-[10px] uppercase font-bold tracking-widest text-brandOrange block">${prod.category} Blend</span>
+            </div>
+
+            <p class="text-xs text-gray-300 leading-relaxed line-clamp-2 h-8">${prod.desc}</p>
+          </div>
+
+          <!-- Bottom interactive section -->
+          <div class="mt-6 space-y-4 pt-4 border-t border-white/5">
+            <div class="flex items-center justify-between">
+              <span class="text-xl font-black text-white font-title">$${prod.price.toFixed(2)}</span>
+              <button onclick="showNutritionModal('${prod.id}')" class="text-xs text-gray-400 hover:text-brandOrange underline transition-colors">
+                Nutrition Facts
+              </button>
+            </div>
+
+            <button onclick="addToCart('${prod.id}')" class="w-full py-2.5 bg-white/5 hover:bg-brandRed border border-white/10 hover:border-brandRed text-white text-xs font-title font-bold rounded-xl transition-all shadow flex items-center justify-center gap-1">
+              <i data-lucide="plus" class="w-4 h-4"></i> Add to Order
+            </button>
+          </div>
+        `;
+        
+        grid.appendChild(card);
+      });
+
+      // Remap icons in new cards
+      lucide.createIcons();
+    }
+
+    function filterProducts(category) {
+      // Toggle button active CSS states
+      const categories = ['all', 'citrus', 'berry', 'specialty'];
+      categories.forEach(cat => {
+        const btn = document.getElementById(`filter-btn-${cat}`);
+        if (cat === category) {
+          btn.className = "px-6 py-2.5 rounded-full font-title font-semibold text-sm bg-brandRed text-white transition-all border border-brandRed shadow-lg";
+        } else {
+          btn.className = "px-6 py-2.5 rounded-full font-title font-semibold text-sm bg-white/5 text-gray-300 hover:text-white transition-all border border-white/10";
+        }
+      });
+
+      renderProductGrid(category);
+    }
+
+    // -------------------------------------------------------------
+    // NUTRITION FACTS MODAL CONTROL
+    // -------------------------------------------------------------
+    function showNutritionModal(prodId) {
+      const prod = productsDatabase.find(p => p.id === prodId);
+      if (!prod) return;
+
+      document.getElementById('nutri-title').innerText = prod.title;
+      document.getElementById('nutri-calories').innerText = prod.calories;
+      document.getElementById('nutri-carbs').innerText = prod.carbs;
+      document.getElementById('nutri-sugars').innerText = prod.sugars;
+      document.getElementById('nutri-vitc').innerText = prod.vitc;
+
+      document.getElementById('nutrition-modal').classList.remove('hidden');
+    }
+
+    function closeNutritionModal() {
+      document.getElementById('nutrition-modal').classList.add('hidden');
+    }
+
+    // -------------------------------------------------------------
+    // DIRECT SHOPPING CART & STATE LOGIC
+    // -------------------------------------------------------------
+    function toggleCartDrawer() {
+      const drawer = document.getElementById('cart-drawer');
+      drawer.classList.toggle('translate-x-full');
+    }
+
+    function addToCart(prodId) {
+      const existing = shoppingCart.find(item => item.id === prodId);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        const prod = productsDatabase.find(p => p.id === prodId);
+        if (prod) {
+          shoppingCart.push({ ...prod, quantity: 1 });
+        }
+      }
+      
+      updateCartUI();
+      
+      // Auto open drawer to provide great user feedback
+      const drawer = document.getElementById('cart-drawer');
+      if (drawer.classList.contains('translate-x-full')) {
+        drawer.classList.remove('translate-x-full');
+      }
+    }
+
+    function addBundleToCart(bundleName, bundlePrice) {
+      // Create temporary mock object for customized bundles
+      const id = bundleName.toLowerCase().replace(/ /g, '-');
+      const existing = shoppingCart.find(item => item.id === id);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        shoppingCart.push({
+          id: id,
+          title: bundleName,
+          price: bundlePrice,
+          emoji: '🎁',
+          desc: 'Exclusive Promo Pack Bundle',
+          quantity: 1
+        });
+      }
+      
+      updateCartUI();
+      
+      // Open drawer
+      document.getElementById('cart-drawer').classList.remove('translate-x-full');
+    }
+
+    function updateCartQuantity(prodId, amt) {
+      const index = shoppingCart.findIndex(item => item.id === prodId);
+      if (index === -1) return;
+
+      shoppingCart[index].quantity += amt;
+      if (shoppingCart[index].quantity <= 0) {
+        shoppingCart.splice(index, 1);
+      }
+
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const container = document.getElementById('cart-items-container');
+      container.innerHTML = '';
+
+      let totalQty = 0;
+      let subtotal = 0;
+
+      if (shoppingCart.length === 0) {
+        container.innerHTML = `
+          <div class="flex flex-col items-center justify-center py-16 text-center text-gray-500 space-y-3">
+            <i data-lucide="shopping-bag" class="w-12 h-12"></i>
+            <p class="font-title text-lg font-bold">Your cart is empty</p>
+            <p class="text-xs max-w-xs">Explore our juices on the products menu tab and add them to get started!</p>
+          </div>
+        `;
+      } else {
+        shoppingCart.forEach(item => {
+          totalQty += item.quantity;
+          subtotal += item.price * item.quantity;
+
+          const el = document.createElement('div');
+          el.className = "p-4 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-between gap-4";
+          el.innerHTML = `
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">${item.emoji}</span>
+              <div>
+                <h4 class="font-title text-sm font-bold text-white line-clamp-1">${item.title}</h4>
+                <p class="text-[11px] text-brandOrange font-title font-bold mt-0.5">$${item.price.toFixed(2)}</p>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center gap-2">
+              <button onclick="updateCartQuantity('${item.id}', -1)" class="p-1 bg-white/5 hover:bg-white/10 text-white rounded">
+                <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+              </button>
+              <span class="text-xs font-mono font-bold w-4 text-center">${item.quantity}</span>
+              <button onclick="updateCartQuantity('${item.id}', 1)" class="p-1 bg-white/5 hover:bg-white/10 text-white rounded">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          `;
+          container.appendChild(el);
+        });
+      }
+
+      // Handle Discount
+      const discountVal = subtotal * (appliedDiscountPct / 100);
+      const total = subtotal - discountVal;
+
+      // Update Subtotal/Totals texts
+      document.getElementById('cart-subtotal').innerText = `$${subtotal.toFixed(2)}`;
+      document.getElementById('cart-total').innerText = `$${total.toFixed(2)}`;
+      
+      if (appliedDiscountPct > 0) {
+        document.getElementById('applied-discount-row').classList.remove('hidden');
+        document.getElementById('applied-discount-pct').innerText = appliedDiscountPct;
+        document.getElementById('applied-discount-val').innerText = discountVal.toFixed(2);
+      } else {
+        document.getElementById('applied-discount-row').classList.add('hidden');
+      }
+
+      // Badge update
+      const badge = document.getElementById('cart-badge');
+      if (totalQty > 0) {
+        badge.innerText = totalQty;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+
+      lucide.createIcons();
+    }
+
+    function applyPromoCode() {
+      const code = document.getElementById('promo-code-input').value.toUpperCase().trim();
+      
+      if (code === 'ZESTY15' || code === 'LOYAL15') {
+        appliedDiscountPct = 15;
+      } else if (code === 'ZESTY10') {
+        appliedDiscountPct = 10;
+      } else {
+        // Simple mock shake or alert
+        document.getElementById('promo-code-input').classList.add('border-brandRed');
+        setTimeout(() => document.getElementById('promo-code-input').classList.remove('border-brandRed'), 1000);
+        return;
+      }
+
+      updateCartUI();
+    }
+
+    function clearCart() {
+      shoppingCart = [];
+      appliedDiscountPct = 0;
+      document.getElementById('promo-code-input').value = '';
+      updateCartUI();
+    }
+
+    // -------------------------------------------------------------
+    // PROMO SPIN WHEEL GAME LOGIC
+    // -------------------------------------------------------------
+    let hasSpun = false;
+    function spinTheWheel() {
+      if (hasSpun) return;
+      hasSpun = true;
+
+      // Disable button
+      const trigger = document.getElementById('wheel-trigger');
+      trigger.disabled = true;
+      trigger.innerText = 'SPINNING';
+
+      const wheel = document.getElementById('svg-wheel');
+      
+      // Determine random rotation angle (minimum 5 full spins + section)
+      const segments = [
+        { label: '15% Discount Code', code: 'ZESTY15', deg: 22.5 },
+        { label: 'Free Extra Fresh Mint', code: 'ZESTFMINT', deg: 67.5 },
+        { label: 'Buy 2 Get 1 Free deal', code: 'ZESTYB2G1', deg: 112.5 },
+        { label: 'Free Size Upgrade Coupon', code: 'ZESTUPGRADE', deg: 157.5 },
+        { label: '10% Discount Code', code: 'ZESTY10', deg: 202.5 },
+        { label: 'Free Branded Sticker pack', code: 'ZESTSTICKER', deg: 247.5 },
+        { label: 'Exclusive Zesty Gift pack', code: 'ZESTGIFT', deg: 292.5 },
+        { label: '15% Loyalty Discount Code', code: 'LOYAL15', deg: 337.5 }
+      ];
+
+      // Avoid "Try Again" fallback segment
+      const chosenSegment = segments[Math.floor(Math.random() * segments.length)];
+      
+      // Calculate total degree rotation
+      const totalDegrees = 1800 + (360 - chosenSegment.deg); // 5 spins + offsets
+
+      wheel.style.transition = 'transform 4s cubic-bezier(0.1, 0.8, 0.3, 1)';
+      wheel.style.transform = `rotate(${totalDegrees}deg)`;
+
+      // Handle prize output after spin animation completes
+      setTimeout(() => {
+        trigger.innerText = 'SPUN';
+        
+        // Show output card
+        document.getElementById('wheel-prize-text').innerText = chosenSegment.label;
+        document.getElementById('wheel-prize-code').innerText = chosenSegment.code;
+        document.getElementById('wheel-prize-box').classList.remove('hidden');
+      }, 4000);
+    }
+
+    // -------------------------------------------------------------
+    // ABOUT PROCESS TIMELINE LOGIC
+    // -------------------------------------------------------------
+    function showProcessDetail(stepNum) {
+      // Update background selection classes
+      for (let i = 1; i <= 4; i++) {
+        const item = document.getElementById(`process-${i}`);
+        if (i === stepNum) {
+          item.className = "p-6 bg-brandRed/10 border border-brandRed/30 rounded-2xl cursor-pointer hover:bg-brandRed/20 transition-all text-center";
+        } else {
+          item.className = "p-6 bg-white/5 border border-white/5 rounded-2xl cursor-pointer hover:bg-brandRed/20 transition-all text-center";
+        }
+      }
+
+      // Update text helper detail
+      const details = {
+        1: "<strong>Active Sourcing Process:</strong> We partner with local farmers worldwide, ensuring that all our citrus and berries are harvested at peak ripeness when fructose levels are completely natural.",
+        2: "<strong>Cold Mountain Spritz Cleaning:</strong> Fruits are submerged in active clean ozone-infused cold water, rinsing off organic debris without reducing essential vitamin enzymes.",
+        3: "<strong>Slow-Masticated Cold Press:</strong> No heat generators! We extract juice by slow crushing rather than blending, keeping cellular membranes unbroken so active vitamin cells thrive.",
+        4: "<strong>Handcrafting & Service:</strong> Mixed instantly on order. No pre-bottled flat juices. You receive active living nutrition inside your custom bio-compostable Zestifyy cup!"
+      };
+
+      document.getElementById('process-detail-box').innerHTML = details[stepNum];
+    }
+
+    // -------------------------------------------------------------
+    // CONTACT SUBMIT LOGIC
+    // -------------------------------------------------------------
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      
+      // Mock submit action
+      document.getElementById('contact-success-box').classList.remove('hidden');
+      
+      // Clear inputs
+      document.getElementById('contact-name').value = '';
+      document.getElementById('contact-email').value = '';
+      document.getElementById('contact-message').value = '';
+    }
+
+    // -------------------------------------------------------------
+    // SECURE CHECKOUT MODAL LOGIC
+    // -------------------------------------------------------------
+    function openCheckoutModal() {
+      if (shoppingCart.length === 0) return;
+      
+      // Compute total inside modal
+      let subtotal = 0;
+      shoppingCart.forEach(item => {
+        subtotal += item.price * item.quantity;
+      });
+      const discountVal = subtotal * (appliedDiscountPct / 100);
+      const total = subtotal - discountVal;
+
+      document.getElementById('checkout-btn-total').innerText = `$${total.toFixed(2)}`;
+      
+      // Setup default view state
+      document.getElementById('checkout-step-details').classList.remove('hidden');
+      document.getElementById('checkout-step-success').classList.add('hidden');
+
+      document.getElementById('checkout-modal').classList.remove('hidden');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkout-modal').classList.add('hidden');
+    }
+
+    function submitCheckoutOrder() {
+      const name = document.getElementById('check-name').value || 'Sok Dara';
+      const phone = document.getElementById('check-phone').value || '+855 12 345 678';
+      const address = document.getElementById('check-address').value || 'Street 2004, Phnom Penh';
+
+      // Load parameters onto receipt page
+      document.getElementById('receipt-name').innerText = name;
+      document.getElementById('receipt-phone').innerText = phone;
+      document.getElementById('receipt-address').innerText = address;
+      
+      let subtotal = 0;
+      shoppingCart.forEach(item => {
+        subtotal += item.price * item.quantity;
+      });
+      const discountVal = subtotal * (appliedDiscountPct / 100);
+      const total = subtotal - discountVal;
+      document.getElementById('receipt-total').innerText = `$${total.toFixed(2)}`;
+
+      // Swap view layouts
+      document.getElementById('checkout-step-details').classList.add('hidden');
+      document.getElementById('checkout-step-success').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
